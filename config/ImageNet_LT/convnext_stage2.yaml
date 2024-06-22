@@ -1,0 +1,25 @@
+coslr: true
+endlr: 0.0
+last: false
+model_dir: ./logs/ImageNet_LT/models/ConvNeXt/final_model_checkpoint_0.pth
+networks:
+  def_file: ./models/ConvNeXt.py
+  params: {model_name: convnext_base, num_classes: 1000, pretrained: false, normalized: true, scale: 30}
+optim_params: {lr: 0.05, momentum: 0.9, weight_decay: 0.0005}
+dataset:
+  dataset: ImageNet_LT
+  dataroot: ./data/ImageNet_LT/
+  batch_size: 64
+  img_size: 224
+  num_workers: 16
+  aug_plus: false
+  num_classes: 1000
+training_opt:
+  display_step: 200
+  log_dir: ./logs/ImageNet_LT/models/ConvNeXt_Stage2
+  num_epochs: 200
+  open_threshold: 0.1
+  milestones: [120, 160]
+  warmup_epoch: 5
+  mixup:
+    alpha: 0.4
